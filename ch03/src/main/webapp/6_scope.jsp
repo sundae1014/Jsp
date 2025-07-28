@@ -32,7 +32,7 @@
 		
 		<%
 			// 포워드 페이지에서 내장객체 값 확인
-			pageContext.forward("./proc/resultScope.jsp");
+			 pageContext.forward("./proc/resultScope.jsp");
 		%>
 		
 		
