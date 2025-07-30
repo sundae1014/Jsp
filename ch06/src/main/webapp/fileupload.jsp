@@ -17,7 +17,6 @@
 			<input type="text" name="title" placeholder="파일 제목 입력" /><br/>
 			<input type="text" name="name" placeholder="이름 입력" /><br/>
 			<input type="file" name="file1" /><br/>
-			<input type="file" name="file2" /><br/>
 			<input type="submit" value="파일 업로드 전송하기" />
 		</form>		
 	</body>

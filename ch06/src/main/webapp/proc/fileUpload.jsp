@@ -1,3 +1,8 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
 <%@page import="java.io.File"%>
 <%@page import="java.util.UUID"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -7,60 +12,54 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	
-	String title = request.getParameter("title");
-	String name = request.getParameter("name");
-
-	System.out.println("title : "+title+", name : "+name);
 	
 	// 파일업로드 디렉터리 경로 생성
 	String path = application.getRealPath("/files");
 	
-	// 업로드 파일 Part 생성
-	Part part1 = request.getPart("file1");
-	Part part2 = request.getPart("file2");
+	// 업로드 파일 Part(업로드된 파일) 첨부파일에서 가져오기
+	Part part = request.getPart("file1");
 	
 	// 파일명 추출
-	String header1 = part1.getHeader("content-disposition");
-	String header2 = part2.getHeader("content-disposition");
-	System.out.println("header1 : " + header1);
-	System.out.println("header2 : " + header2);
-	
-	String[] headers1 = header1.split("filename=");
-	String[] headers2 = header2.split("filename=");
-	
-	String fname1 = headers1[1].trim().replace("\"", ""); // "(따옴표) 제거
-	String fname2 = headers2[1].trim().replace("\"", "");
-	
-	System.out.println("fname1 : " + fname1);
-	System.out.println("fname2 : " + fname2);
-	
-	// 파일 저장
-	part1.write(path + "/" + fname1);
-	part2.write(path + "/" + fname2);
+	String oriname = part.getSubmittedFileName();
+	System.out.println("fname : " + oriname);
 	
 	// 중복되지 않는 파일명 수정
-	String ext1 = fname1.substring(fname1.lastIndexOf("."));
-	String ext2 = fname2.substring(fname2.lastIndexOf("."));
+	String ext = oriname.substring(oriname.lastIndexOf("."));
+	String savedName = UUID.randomUUID().toString() + ext;
 	
-	String newFname1 = UUID.randomUUID().toString() + ext1;
-	String newFname2 = UUID.randomUUID().toString() + ext2;
+	// 파일저장 (경로 + 구분자 + 중복되지 않는 파일명)
+	part.write(path + File.separator + savedName);
 	
-	File oNameFile1 = new File(path + "/" + fname1);
-	File sNameFile1 = new File(path + "/" + newFname1);
-	
-	File oNameFile2 = new File(path + "/" + fname2);
-	File sNameFile2 = new File(path + "/" + newFname2);
-	
-	oNameFile1.renameTo(sNameFile1);
-	oNameFile2.renameTo(sNameFile2);
-	
+	String title = request.getParameter("title");
+	String name = request.getParameter("name");
+
 	
 	// 데이터베이스에 원본 파일명 저장(INSERT)
-	
+	try{
+		Context ctx = (Context) new InitialContext().lookup("java:comp/env");
+		DataSource ds = (DataSource) ctx.lookup("jdbc/sundae517");
+		
+		Connection conn = ds.getConnection();
+		
+		String sql = "INSERT INTO FILES (TITLE, NAME, ONAME, SNAME, RDATE) VALUES (?,?,?,?,SYSDATE)";
+		PreparedStatement psmt = conn.prepareStatement(sql);
+		psmt.setString(1, title);
+		psmt.setString(2, name);
+		psmt.setString(3, oriname);
+		psmt.setString(4, savedName);
+		
+		psmt.executeUpdate();
+		
+		psmt.close();
+		conn.close();
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 	
 	// 파일 목록 이동(리다이렉트)
 	
-	
+	response.sendRedirect("/ch06/fileDownload.jsp");
 	
 	
 %>
