@@ -63,16 +63,16 @@
 				<th>관리</th>
 			</tr>
 			<%for(User2VO user2VO : users){%>
-				<tr>
-					<td><%= user2VO.getUser_id() %></td>
-					<td><%= user2VO.getName() %></td>
-					<td><%= user2VO.getHp() %></td>
-					<td><%= user2VO.getAge() %></td>
-					<td>
-						<a href="./modify.jsp?user_id=<%= user2VO.getUser_id() %>">수정</a>
-						<a href="./delete.jsp?user_id=<%= user2VO.getUser_id() %>">삭제</a>
-					</td>
-				</tr>
+			<tr>
+				<td><%= user2VO.getUser_id() %></td>
+				<td><%= user2VO.getName() %></td>
+				<td><%= user2VO.getHp() %></td>
+				<td><%= user2VO.getAge() %></td>
+				<td>
+					<a href="./modify.jsp?user_id=<%= user2VO.getUser_id() %>">수정</a>
+					<a href="./delete.jsp?user_id=<%= user2VO.getUser_id() %>">삭제</a>
+				</td>
+			</tr>
 			<%} %>
 		</table>
 	</body>
