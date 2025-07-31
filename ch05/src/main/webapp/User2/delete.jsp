@@ -53,7 +53,7 @@
 		<a href="/ch05/jdbc.jsp">처음으로</a>
 		<a href="/ch05/User2/list.jsp">목록으로</a>
 		
-		<form action="/ch05/proc/delete.jsp?user_id=<%= user2.getUser_id() %>" method="post">
+		<form action="/ch05/User2/proc/delete.jsp?user_id=<%= user2.getUser_id() %>" method="post">
 			<table border="1">
 				<tr>
 					<td>아이디</td>
