@@ -3,14 +3,14 @@ package controller.user1;
 import java.io.IOException;
 import java.util.List;
 
-import dto.User1DTO;
+import dto.user1.User1DTO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.User1Service;
+import service.user1.User1Service;
 
 @WebServlet("/user1/list.do")
 public class ListController extends HttpServlet {

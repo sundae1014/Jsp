@@ -1,10 +1,7 @@
 package controller.user2;
 
 import java.io.IOException;
-import java.util.List;
 
-import dto.user2.User2DTO;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,8 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.user2.User2Service;
 
-@WebServlet("/user2/list.do")
-public class ListController extends HttpServlet {
+@WebServlet("/user2/delete.do")
+public class DeleteController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -22,12 +19,12 @@ public class ListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<User2DTO> dtoList = service.findAll();
+		String user_id = req.getParameter("user_id");
 		
-		req.setAttribute("dtoList", dtoList);
+		service.delete(user_id);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user2/list.jsp");
-		dispatcher.forward(req, resp);
+		resp.sendRedirect("/ch09/user2/list.do");
+		
 	}
 	
 	@Override

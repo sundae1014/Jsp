@@ -7,7 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.User1Service;
+import service.user1.User1Service;
 
 @WebServlet("/user1/delete.do")
 public class DeleteController extends HttpServlet {

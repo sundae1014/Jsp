@@ -1,9 +1,9 @@
-package service;
+package service.user1;
 
 import java.util.List;
 
 import dao.user1.User1DAO;
-import dto.User1DTO;
+import dto.user1.User1DTO;
 
 // Service : Controller의 부가적인 비즈니스 처리를 담당
 public class User1Service {

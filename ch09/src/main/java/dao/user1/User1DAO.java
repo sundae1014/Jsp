@@ -12,7 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import dto.User1DTO;
+import dto.user1.User1DTO;
 
 // DAO(Data Access Object) : DB처리를 수행하는 객체
 public class User1DAO {
