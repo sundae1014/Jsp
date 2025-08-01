@@ -11,7 +11,6 @@
 <%
 	List<User3VO> users = new ArrayList<>();
 	
-	User3VO user3 = null;
 	
 	try{
 		// 자바 기본 환경 객체 검색(WAS)
@@ -24,8 +23,8 @@
 		PreparedStatement psmt = conn.prepareStatement("SELECT * FROM USER3");
 		ResultSet rs = psmt.executeQuery();
 		
-		if(rs.next()){
-			user3 = new User3VO();
+		while(rs.next()){
+			User3VO user3 = new User3VO();
 			user3.setUser_id(rs.getString(1));
 			user3.setName(rs.getString(2));
 			user3.setHp(rs.getString(3));
@@ -62,16 +61,18 @@
 				<th>나이</th>
 				<th>관리</th>
 			</tr>
+			<%for(User3VO user3VO : users) {%>
 			<tr>
-				<td><%= user3.getUser_id() %></td>
-				<td><%= user3.getName() %></td>
-				<td><%= user3.getHp() %></td>
-				<td><%= user3.getAge() %></td>
+				<td><%= user3VO.getUser_id() %></td>
+				<td><%= user3VO.getName() %></td>
+				<td><%= user3VO.getHp() %></td>
+				<td><%= user3VO.getAge() %></td>
 				<td>
-					<a href="/ch05/User3/modify.jsp?user_id=<%= user3.getUser_id() %>">수정</a>
-					<a href="#">삭제</a>
+					<a href="/ch05/User3/modify.jsp?user_id=<%= user3VO.getUser_id() %>">수정</a>
+					<a href="/ch05/User3/delete.jsp?user_id=<%= user3VO.getUser_id() %>">삭제</a>
 				</td>
 			</tr>
+			<%} %>
 		</table>
 		
 	</body>

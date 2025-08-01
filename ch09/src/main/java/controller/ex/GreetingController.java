@@ -1,4 +1,4 @@
-package controller;
+package controller.ex;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/hello.do")
-public class HelloController extends HttpServlet {
+@WebServlet("/greeting.do")
+public class GreetingController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class HelloController extends HttpServlet {
 		 * 	- jsp 파일에 직접 요청을 못하게 하기 위해 WEB-INF 폴더 하위에 view 페이지 작성
 		 * 	- JSP 페이지로 Controller의 request와 response 객체 공유
 		 */
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/hello.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/greeting.jsp");
 		dispatcher.forward(req, resp);		
 	}
 	

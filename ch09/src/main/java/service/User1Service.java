@@ -2,7 +2,7 @@ package service;
 
 import java.util.List;
 
-import dao.User1DAO;
+import dao.user1.User1DAO;
 import dto.User1DTO;
 
 // Service : Controller의 부가적인 비즈니스 처리를 담당

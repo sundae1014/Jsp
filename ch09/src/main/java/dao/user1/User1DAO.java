@@ -1,4 +1,4 @@
-package dao;
+package dao.user1;
 
 
 import java.sql.Connection;

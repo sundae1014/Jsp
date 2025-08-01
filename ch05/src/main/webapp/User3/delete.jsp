@@ -49,12 +49,12 @@
 		<title>User3:modify</title>
 	</head>
 	<body>
-		<h3>User3 수정</h3>
+		<h3><%= user_id %> 정말 삭제하시겠습니까?</h3>
 		
 		<a href="/ch05/jdbc.jsp">처음으로</a>
-		<a href="/ch05/User3/list.jsp">목록으로</a>
+		<a href="/ch05/User3/list.jsp">뒤로가기</a>
 		
-		<form action="/ch05/User3/proc/modify.jsp" method="post">
+		<form action="/ch05/User3/proc/delete.jsp" method="post">
 			<table border="1">
 				<tr>
 					<td>아이디</td>
@@ -62,19 +62,19 @@
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td> <input type="text" name="name" value="<%= user3.getName() %>" placeholder="이름 입력하시오"></td>
+					<td> <input type="text" readonly name="name" value="<%= user3.getName() %>" placeholder="이름 입력하시오"></td>
 				</tr>
 				<tr>
 					<td>휴대폰</td>
-					<td> <input type="text" name="hp" value="<%= user3.getHp() %>" placeholder="전화번호 입력하시오(- 포함)"></td>
+					<td> <input type="text" readonly name="hp" value="<%= user3.getHp() %>" placeholder="전화번호 입력하시오(- 포함)"></td>
 				</tr>
 				<tr>
 					<td>나이</td>
-					<td> <input type="text" name="age" value="<%= user3.getAge() %>" placeholder="나이를 입력하시오"></td>
+					<td> <input type="text" readonly name="age" value="<%= user3.getAge() %>" placeholder="나이를 입력하시오"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right"></td>
-					<td> <input type="submit" value="수정하기" >
+					<td> <input type="submit" value="삭제하기" >
 				</tr>
 			</table>
 		</form>
