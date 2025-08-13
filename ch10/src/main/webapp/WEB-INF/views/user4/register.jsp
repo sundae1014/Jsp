@@ -23,8 +23,10 @@
 				</tr>
 				<tr>
 					<td>성별</td>
-					<td><input type="radio" name="gender" value="M" placeholder="남자" /></td>
-					<td><input type="radio" name="gender" value="F" placeholder="여자" /></td>
+    				<td>
+    					<label><input type="radio" name="gender" value="M" > 남</label>
+    					<label><input type="radio" name="gender" value="F" > 여</label>
+    				</td>
 				</tr>
 				<tr>
 					<td>나이</td>

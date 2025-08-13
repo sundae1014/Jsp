@@ -50,6 +50,6 @@ public class ModifyController extends HttpServlet {
 		
 		service.modify(dto);
 		
-		resp.sendRedirect("/ch10/user3/list.do");
+		resp.sendRedirect("/ch10/user4/list.do");
 	}
 }
