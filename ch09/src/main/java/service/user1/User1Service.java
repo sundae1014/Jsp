@@ -5,8 +5,6 @@ import java.util.List;
 import dao.user1.User1DAO;
 import dto.user1.User1DTO;
 
-
-
 /*
 	Service
 	 - Controller의 부가적인 비즈니스 처리를 담당
@@ -34,11 +32,11 @@ public class User1Service {
 	public List<User1DTO> findAll() {
 		return dao.selectAllUser1();
 	}
-	public void modify(User1DTO dto) {
-		dao.updateUser1(dto);
+	public int modify(User1DTO dto) {
+		return dao.updateUser1(dto);
 	}
-	public void delete(String user_id) {
-		dao.deleteUser1(user_id);
+	public int delete(String user_id) {
+		return dao.deleteUser1(user_id);
 	}
 
 }
