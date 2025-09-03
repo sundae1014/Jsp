@@ -10,10 +10,10 @@
     <div id="wrapper">
         <header>
             <h3>
-                <a href="/index.do" class="title">Board Project</a>
+                <a href="/jboard/index.jsp" class="title">Board Project</a>
             </h3>
             <p>
-                <a href="../user/info.do" class="info">홍길동</a>님 반갑습니다.
-                <a href="../user/login.do">[로그아웃]</a>
+                <a href="/jboard/user/info.do" class="info">${sessionScope.sessUser.nick}</a>님 반갑습니다.
+                <a href="/jboard/user/logout.do">[로그아웃]</a>
             </p>
         </header>

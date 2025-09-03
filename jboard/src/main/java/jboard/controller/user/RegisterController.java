@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jboard.dto.UserDTO;
 import jboard.service.UserService;
+import jboard.util.ResultCode;
 
 @WebServlet("/user/register.do")
 public class RegisterController extends HttpServlet{
@@ -53,6 +54,6 @@ public class RegisterController extends HttpServlet{
 		
 		userService.register(dto);
 		
-		resp.sendRedirect("/jboard/user/login.do?code=101");
+		resp.sendRedirect("/jboard/user/login.do?code="+ResultCode.REGISTER_SUCCESS.getCode());
 	}
 }
