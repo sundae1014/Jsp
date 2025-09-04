@@ -221,6 +221,8 @@ document.addEventListener('DOMContentLoaded', function(){
 			body: params
 		});
 		
+		alert(code);
+		
 		const data = await response.json();			
 		console.log(data);
 		

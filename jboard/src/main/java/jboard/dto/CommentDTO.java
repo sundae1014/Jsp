@@ -8,6 +8,16 @@ public class CommentDTO {
 	private String writer;
 	private String reg_ip;
 	private String wdate;
+	
+	// 추가 필드
+	private String nick;
+	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public int getCno() {
 		return cno;
 	}
@@ -17,9 +27,17 @@ public class CommentDTO {
 	public int getAno() {
 		return ano;
 	}
+	
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
+	
+	public void setAno(String ano) {		
+		if(ano != null) {
+			this.ano = Integer.parseInt(ano);	
+		}		
+	}
+	
 	public String getContent() {
 		return content;
 	}
@@ -51,4 +69,5 @@ public class CommentDTO {
 	}
 	
 	
+
 }

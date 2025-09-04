@@ -13,11 +13,17 @@ public enum ArticleService {
 	private ArticleDAO dao = ArticleDAO.getInstance();
 	
 	// 게시판 페이지네이션 처리 메서드
-	public PagenationDTO getPagenationDTO(String pg) {
+	public PagenationDTO getPagenationDTO(String pg, String searchType, String keyword) {
 		
-		// 전체 게시물 갯수 구하기
-		int total = dao.selectCountTotal();
+		int total = 0;
 		
+		if(keyword == null) {
+			// 전체 게시물 갯수 구하기
+			total = dao.selectCountTotal();
+		}else {
+			total = dao.selectCountSearch(searchType, keyword);
+		}
+				
 		// 마지막 페이지번호 구하기
 		int lastPageNum = 0;
 		
@@ -58,22 +64,21 @@ public enum ArticleService {
 		dto.setPageGroupEnd(pageGroupEnd);
 		
 		return dto;
-	}	
-	
-	
-	
+	}
 	public int register(ArticleDTO dto) {
 		return dao.insert(dto);
-	}	
+	}
 	public int getCountTotal() {
 		return dao.selectCountTotal();
-	}
-	
-	public ArticleDTO findById(int ano) {
-		return dao.select(ano);
+	}	
+	public ArticleDTO findAricleWithFile(String ano) {
+		return dao.selectArticleWithFile(ano);
 	}
 	public List<ArticleDTO> findAll(int start) {
 		return dao.selectAll(start);
+	}
+	public List<ArticleDTO> findAllSearch(int start, String searchType, String keyword) {
+		return dao.selectArticleSearch(start, searchType, keyword);
 	}
 	public void modify(ArticleDTO dto) {
 		dao.update(dto);

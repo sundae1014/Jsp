@@ -11,16 +11,16 @@ public enum CommentService {
 	
 	private CommentDAO dao = CommentDAO.getInstance();
 	
-	public void register(CommentDTO dto) {
-		dao.insert(dto);
+	public CommentDTO register(CommentDTO dto) {
+		return dao.insert(dto);
 	}
 	
 	public CommentDTO findById(int cno) {
 		return dao.select(cno);
 	}
 	
-	public List<CommentDTO> findAll() {
-		return dao.selectAll();
+	public List<CommentDTO> findAll(String ano) {
+		return dao.selectAll(ano);
 	}
 	
 	public void modify(CommentDTO dto) {
